@@ -65,7 +65,7 @@ def _kappa(pairs: list[tuple[str, str]]) -> float:
 
 def calibrate(judge: Judge, examples: list[Example], repeat: int = 1) -> Calibration:
     pairs, errors, unstable, disagreements = [], 0, 0, []
-    confusion = Counter()
+    confusion: Counter[str] = Counter()
     for ex in examples:
         verdicts = [judge.grade(ex.rubric, ex.prompt, ex.response) for _ in range(repeat)]
         labels = [v.verdict for v in verdicts]

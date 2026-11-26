@@ -83,6 +83,7 @@ class RecordingProvider:
             if n >= len(recorded):
                 raise ProviderError(f"no recording for this request (call #{n + 1} to {model}); re-record the cassette")
             return recorded[n]
+        assert self.inner is not None  # guaranteed by __init__ in record mode
         reply = self.inner.chat(model, messages, temperature)
         self.store.setdefault(key, [])
         if n < len(self.store[key]):

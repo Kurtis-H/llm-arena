@@ -15,7 +15,12 @@ jobs:
           python-version: "3.12"
       - run: pip install -e ".[dev]"
       - run: ruff check . && ruff format --check .
-      - run: pytest -q
+      - name: Type check (mypy)
+        run: mypy --ignore-missing-imports src
+      - name: Tests with coverage (fails under 80%)
+        run: pytest -q --cov=llm_arena --cov-report=term-missing --cov-fail-under=80
+      - name: Dependency vulnerability audit
+        run: pip-audit --skip-editable
 
   # Pipeline demo with the built-in fake models: proves every stage runs end to end.
   demo:

@@ -49,6 +49,7 @@ def cmd_run(args) -> int:
     suite = load_suite(args.suite)
     provider = _provider(args)
     t = suite.target
+    target: ModelTarget | HttpTarget
     if t["type"] == "model":
         target = ModelTarget(
             provider, args.target_model or t["model"], suite.system_prompt, float(t.get("temperature", 0.7))
