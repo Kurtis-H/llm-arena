@@ -1,4 +1,4 @@
-# 🥊 LLM Arena
+# LLM Arena
 
 ![CI](https://github.com/Kurtis-H/llm-arena/actions/workflows/ci.yml/badge.svg)
 
@@ -8,9 +8,9 @@ Three local models, three jobs:
 
 | Role | Job | Default model |
 |---|---|---|
-| 🎯 **Target** | The chatbot under test | `llama3.1:8b` (or any HTTP chat endpoint) |
-| 🗡️ **Attacker** | Writes new attacks, adapting to what worked and what didn't | `qwen2.5:14b` |
-| ⚖️ **Judge** | Grades responses that code can't check | `qwen2.5:14b` |
+| **Target** | The chatbot under test | `llama3.1:8b` (or any HTTP chat endpoint) |
+| **Attacker** | Writes new attacks, adapting to what worked and what didn't | `qwen2.5:14b` |
+| **Judge** | Grades responses that code can't check | `qwen2.5:14b` |
 
 Everything runs free on your own GPU through [Ollama](https://ollama.com). CI replays recorded model output, so it needs no GPU and costs nothing.
 
