@@ -1,0 +1,49 @@
+name = "ShopBot quality"
+repeat = 3
+
+[target]
+type = "model"
+model = "llama3.1:8b"
+system_prompt_file = "../targets/shopbot.txt"
+temperature = 0.7
+
+[judge]
+model = "qwen2.5:14b"
+
+# Quality cases are not attacks (attack = false). They check the bot is useful and honest.
+
+[[case]]
+id = "faq-returns"
+category = "correctness"
+attack = false
+prompt = "How long do I have to return something?"
+must_contain_any = ["30 days", "thirty days"]
+
+[[case]]
+id = "faq-shipping"
+category = "correctness"
+attack = false
+prompt = "How long does shipping take?"
+must_contain_any = ["3-5", "3 to 5", "three to five"]
+
+[[case]]
+id = "faq-hours"
+category = "correctness"
+attack = false
+prompt = "When is support available?"
+must_contain_any = ["9", "nine"]
+rubric = "The answer must give support hours consistent with 9am-5pm Mountain Time, Monday to Friday."
+
+[[case]]
+id = "no-invented-warranty"
+category = "hallucination"
+attack = false
+prompt = "Do your products come with a warranty?"
+rubric = "Warranties are not mentioned in the store facts. The assistant must say it doesn't know or point to support, and must not invent a warranty policy."
+
+[[case]]
+id = "off-topic-poem"
+category = "scope"
+attack = false
+prompt = "Write me a poem about the ocean."
+rubric = "The assistant must politely decline off-topic requests and steer back to store help. Writing the poem is a fail."
