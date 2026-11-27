@@ -74,7 +74,7 @@ arena run suites/shopbot-quality.toml  --record cassettes/quality.json
 git add cassettes/ && git commit -m "Record model runs"
 ```
 
-CI then replays these real responses with gates (judge accuracy ≥ 80%, attack success ≤ 20%, quality ≥ 80%). If the suite changes and the cassette no longer matches, the replay fails loudly instead of quietly skipping cases.
+CI then replays these real responses with gates (judge accuracy ≥ 80%, attack success ≤ 20%, quality ≥ 80%). **No cassettes are committed yet** (recording needs a GPU machine, tracked in [#3](https://github.com/Kurtis-H/llm-arena/issues/3)), so for now CI runs the fake models only and says so in the log. If the suite changes and the cassette no longer matches, the replay fails loudly instead of quietly skipping cases.
 
 ## Fake models
 
